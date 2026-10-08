@@ -46,4 +46,20 @@ public class GlobalExceptionHandler {
         );
     }
 
+    // 로그인 실패 (아이디 없음 / 비밀번호 불일치)
+    @ExceptionHandler({UnauthorizedException.class})
+    public ResponseEntity<RestApiException> unauthorizedExceptionHandler(UnauthorizedException ex) {
+
+        RestApiException restApiException =
+                new RestApiException(
+                        ex.getMessage(),
+                        HttpStatus.UNAUTHORIZED.value()
+                );
+
+        return new ResponseEntity<>(
+                restApiException,
+                HttpStatus.UNAUTHORIZED
+        );
+    }
+
 }

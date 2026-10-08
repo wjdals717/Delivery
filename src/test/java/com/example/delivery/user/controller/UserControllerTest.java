@@ -1,6 +1,7 @@
 package com.example.delivery.user.controller;
 
 import com.example.delivery.global.config.SecurityConfig;
+import com.example.delivery.global.security.JwtUtil;
 import com.example.delivery.user.dto.request.SignupRequest;
 import com.example.delivery.user.service.UserService;
 import org.junit.jupiter.api.DisplayName;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.webmvc.test.autoconfigure.WebMvcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -23,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(UserController.class)
-@Import(SecurityConfig.class)
+@Import({SecurityConfig.class, JwtUtil.class})
 class UserControllerTest {
 
     @Autowired
@@ -31,6 +33,9 @@ class UserControllerTest {
 
     @MockitoBean
     private UserService userService;
+
+    @MockitoBean
+    private UserDetailsService userDetailsService;
 
     @Test
     @DisplayName("회원가입 성공 시 201")
