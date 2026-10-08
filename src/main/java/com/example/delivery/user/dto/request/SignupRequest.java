@@ -22,7 +22,7 @@ public class SignupRequest {
     @NotBlank
     private String email;
 
-    private boolean OWNER = false;
+    private boolean owner = false;
 
     private String adminToken;
 }

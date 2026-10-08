@@ -23,4 +23,19 @@ public class GlobalExceptionHandler {
         );
     }
 
+    @ExceptionHandler({DuplicateException.class})
+    public ResponseEntity<RestApiException> duplicateExceptionHandler(DuplicateException ex) {
+
+        RestApiException restApiException =
+                new RestApiException(
+                        ex.getMessage(),
+                        HttpStatus.CONFLICT.value()
+                );
+
+        return new ResponseEntity<>(
+                restApiException,
+                HttpStatus.CONFLICT
+        );
+    }
+
 }

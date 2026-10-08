@@ -1,5 +1,6 @@
 package com.example.delivery.user.service;
 
+import com.example.delivery.global.exception.DuplicateException;
 import com.example.delivery.global.exception.GlobalExceptionHandler;
 import com.example.delivery.user.dto.request.SignupRequest;
 import com.example.delivery.user.entity.User;
@@ -30,19 +31,19 @@ public class UserService {
         // 회원 중복 확인
         Optional<User> checkUsername = userRepository.findByUsername(username);
         if (checkUsername.isPresent()) {
-            throw new IllegalArgumentException("중복된 사용자가 존재합니다.");
+            throw new DuplicateException("중복된 사용자가 존재합니다.");
         }
 
         // email 중복확인
         String email = requestDto.getEmail();
         Optional<User> checkEmail = userRepository.findByEmail(email);
         if (checkEmail.isPresent()) {
-            throw new IllegalArgumentException("중복된 Email 입니다.");
+            throw new DuplicateException("중복된 Email 입니다.");
         }
 
         // 사용자 ROLE 확인
         UserRoleEnum role = UserRoleEnum.CUSTOMER;
-        if (requestDto.isOWNER()) {
+        if (requestDto.isOwner()) {
             if (!adminToken.equals(requestDto.getAdminToken())) {
                 throw new IllegalArgumentException(
                         "관리자 암호가 틀려 등록이 불가능합니다."
