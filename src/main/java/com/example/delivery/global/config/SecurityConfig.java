@@ -62,6 +62,8 @@ public class SecurityConfig {
         http.authorizeHttpRequests(auth -> auth
                 .requestMatchers("/error").permitAll()
                 .requestMatchers(HttpMethod.POST, "/api/user/signup").permitAll()
+                .requestMatchers(HttpMethod.GET, "/api/menus", "/api/menus/*").permitAll()
+                .requestMatchers("/api/menus", "/api/menus/*").hasRole("OWNER")
                 .anyRequest().authenticated()
         );
 

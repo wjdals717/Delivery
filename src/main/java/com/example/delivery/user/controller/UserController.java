@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@RequestMapping("/api/user")
 public class UserController {
 
     private final UserService userService;
 
     // 회원가입
-    @PostMapping("/user/signup")
+    @PostMapping("/signup")
     public ResponseEntity<Void> signup(@Valid @RequestBody SignupRequest requestDto) {
         userService.signup(requestDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
