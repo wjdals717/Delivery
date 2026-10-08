@@ -37,20 +37,4 @@ public class GlobalExceptionHandler {
                 HttpStatus.CONFLICT
         );
     }
-
-    @ExceptionHandler({UnauthorizedException.class})
-    public ResponseEntity<RestApiException> unauthorizedExceptionHandler(UnauthorizedException ex) {
-
-        RestApiException restApiException =
-                new RestApiException(
-                        ex.getMessage(),
-                        HttpStatus.UNAUTHORIZED.value()
-                );
-
-        return new ResponseEntity<>(
-                restApiException,
-                HttpStatus.UNAUTHORIZED
-        );
-    }
-
 }

@@ -1,7 +1,5 @@
 package com.example.delivery.user.controller;
 
-import com.example.delivery.global.security.JwtUtil;
-import com.example.delivery.user.dto.request.LoginRequest;
 import com.example.delivery.user.dto.request.SignupRequest;
 import com.example.delivery.user.service.UserService;
 import jakarta.validation.Valid;
