@@ -1,7 +1,6 @@
 package com.example.delivery.user.service;
 
 import com.example.delivery.global.exception.DuplicateException;
-import com.example.delivery.global.exception.GlobalExceptionHandler;
 import com.example.delivery.user.dto.request.SignupRequest;
 import com.example.delivery.user.entity.User;
 import com.example.delivery.user.entity.UserRoleEnum;
