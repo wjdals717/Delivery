@@ -60,10 +60,12 @@ public class OrderService {
         return new OrderResponse(order);
     }
 
+    @Transactional
     public OrderResponse acceptOrder(Long orderId, User user) {
         return changeStatus(orderId, OrderStatus.PAID, OrderStatus.ACCEPTED, user);
     }
 
+    @Transactional
     public Object completeOrder(Long orderId, User user) {
         return changeStatus(orderId, OrderStatus.ACCEPTED, OrderStatus.COMPLETED, user);
     }

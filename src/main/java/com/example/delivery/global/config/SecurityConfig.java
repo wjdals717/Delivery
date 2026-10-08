@@ -67,6 +67,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/api/orders").hasRole("CUSTOMER")
                 .requestMatchers(HttpMethod.PATCH, "/api/orders/*/cancel").hasRole("CUSTOMER")
                 .requestMatchers(HttpMethod.PATCH, "/api/orders/*/accept", "/api/orders/*/complete").hasRole("OWNER")
+                .requestMatchers(HttpMethod.POST, "/api/orders/*/payments").hasRole("CUSTOMER")
                 .anyRequest().authenticated()
         );
 
